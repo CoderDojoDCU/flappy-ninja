@@ -40,7 +40,7 @@ function checkHit(ninjaposition, ninjatopposition) {
 		var pipeHeight = $(this).height();
 		if(isHit(ninjaposition, ninjatopposition,pipeLeft,pipeHeight)) {
 			console.log('hit2');
-			ninja.hide();
+			//ninja.hide();
 			$("#maintitle").empty();
 			$("#maintitle").text('One rule, be cool and keep coding');
 			pipenothit = false;
@@ -64,12 +64,18 @@ function start(){
 	windowheight=$(document).height();
 	windowwidth=$(document).width();
 	ninja=$("#ninja");
-  setStartPosition();
+    setStartPosition();
 	loadPipes();
 	ninjaMove();
 }
 
 function loadPipes() {
+	for(var currentPipe = 0; currentPipe < pipes.length; currentPipe++) {
+		$("#"+pipes[currentPipe]).remove();
+	}
+	pipes = [];
+    numberOfPipes = numberOfPipes+1;
+    
 	for(var currentPipe = 0; currentPipe < numberOfPipes; currentPipe++) {
 		var screenDimension = getScreenDimension();
 		var randomPosition = Math.floor((Math.random() * screenDimension) + 1);
@@ -78,8 +84,6 @@ function loadPipes() {
 	}
 	pipeMove();
 }
-
-
 
 function setStartPosition() {
 	ninja.css('left','0px');
@@ -121,10 +125,18 @@ function ninjaMove() {
 			setTimeout(ninjaMove,20);
 		} else {
 		    score = score + 10;
+		    setScore();
 			setStartPosition();
+			ninjaMove();
+			loadPipes();
 		}
 	} else {
 		score = score - 5;
+		setScore();
+		setStartPosition();
+		pipenothit = true;
+	    ninjaMove();
+	    loadPipes();
 	}
 }
 
@@ -136,5 +148,11 @@ function pipeMove() {
 		currentPipe.css ('left', (position-2 )+'px');
 	}
 	setTimeout(pipeMove,10);
-
 }
+
+function setScore() {
+	$("#score").html(score);
+}
+
+
+

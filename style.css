@@ -48,8 +48,22 @@ display: block;
 }
 
 .scoreBoard {
-	border: 5px solid pink;
-	height: 100px;
+	border: 20px solid white;
 	width: 100px;
-	padding: 10px;
+	height: 100px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
 }
+
+#score {
+	text-align: center;
+	color: white;
+	font-size: 30px;
+}
+
+
+
+
+
+
