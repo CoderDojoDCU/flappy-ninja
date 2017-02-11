@@ -2,6 +2,7 @@ document.onkeydown = handleKey;
 
 var windowheight;
 var ninja;
+var score = 0;
 
 var windowwidth;
 
@@ -104,8 +105,8 @@ function getScreenDimension() {
 }
 
 function getRandomHeight() {
-	var screenheight = ($( document ).height());
-	var newheight = Math.floor((Math.random() *  ((screenheight*.8) - (screenheight*.4) + 1)) + (screenheight*.4))
+	var screenheight = window.innerHeight;
+	var newheight = Math.floor((Math.random() *  ((screenheight*.6) - (screenheight*.3) + 1)) + (screenheight*.3))
 	return newheight;
 }
 
@@ -119,8 +120,11 @@ function ninjaMove() {
 			ninja.css ('bottom', (topposition-5)+'px');
 			setTimeout(ninjaMove,20);
 		} else {
+		    score = score + 10;
 			setStartPosition();
 		}
+	} else {
+		score = score - 5;
 	}
 }
 
@@ -129,8 +133,8 @@ function pipeMove() {
 	for(var pipeNo = 0; pipeNo < pipes.length; pipeNo++) {
 		var currentPipe = $("#"+pipes[pipeNo]);
 		var position = parseInt(currentPipe.css('left'));
-		currentPipe.css ('left', (position-2)+'px');
+		currentPipe.css ('left', (position-2 )+'px');
 	}
-	setTimeout(pipeMove,50);
+	setTimeout(pipeMove,10);
 
 }
