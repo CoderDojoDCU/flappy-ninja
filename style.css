@@ -46,3 +46,10 @@ display: block;
 .redpipe {
 	position: absolute;
 }
+
+.scoreBoard {
+	border: 5px solid pink;
+	height: 100px;
+	width: 100px;
+	padding: 10px;
+}
